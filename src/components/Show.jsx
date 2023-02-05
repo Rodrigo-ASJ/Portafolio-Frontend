@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const url = 'http://localhost:8001/api'
+const url = 'https://portafolio-backend.up.railway.app/api'
 
 const ShowElement = () => {
 
+    const imgUrl = 'https://portafolio-backend.up.railway.app/api/storage/'
     const [elementos, setElementos] = useState([]);
 
     useEffect( () => {

@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, {useEffect, useState} from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 
-const url = 'http://localhost:8001/api/portafolios/'
+const url = 'https://portafolio-backend.up.railway.app/api/portafolios/'
 
 
 const Edit = () => {

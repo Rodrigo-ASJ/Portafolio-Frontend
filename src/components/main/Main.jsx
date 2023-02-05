@@ -21,6 +21,7 @@ import Show from '@/components/Show';
 import HomeIcon from '@mui/icons-material/Home';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import { Link } from 'react-router-dom'
+import Header from '@/components/header/Header';
 
 const drawerWidth = 240;
 
@@ -183,6 +184,8 @@ export default function Main() {
       
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
+
+        <Header/>
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non

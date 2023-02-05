@@ -1,24 +1,38 @@
-import { Description } from '@mui/icons-material';
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
-const url = 'http://localhost:8001/api/portafolios'
+
+const url = 'https://portafolio-backend.up.railway.app/api/portafolios'
 
 const Create = () => {
 
+    // estados de cada input del formulario
     const [title, setTitle] = useState('');
     const [img, setImg] = useState('');
     const [description, setDescription] = useState('');
     const [tech, setTech] = useState('');
     const [github, setGithub] = useState('');
     const [deployment, setDeployment] = useState('');
-    
+
+    // redirecciona
     const navigate = useNavigate();
+    
+    //* evento para detectar cambios en el formulario
+    const handleChange = (e) => {
+        let value = e.target.files ? e.target.files[0] : e.target.files;
+
+        if (e.target.files) {
+            setImg(value)
+        }
+      }
+
+
 
     const store = async (e) => {
         e.preventDefault();
+        
         await axios.post(url, {
             project_title : title, 
             project_img : img,
@@ -26,14 +40,18 @@ const Create = () => {
             project_tech : tech,
             project_github : github,
             project_deployment : deployment,
-        })
+        },{
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
        navigate('/')
     }
 
   return (
     <div>
         <h3>Create</h3>
-        <form onSubmit={store}>
+        <form onSubmit={store} >
             <div className='mb-3'>
                 <label className='form-label'> Title </label>
                 <input 
@@ -45,8 +63,11 @@ const Create = () => {
                 <label className='form-label'> Image </label>
                 <input 
                 value={img} 
-                onChange={(e)=> setImg(e.target.value)} 
-                type="text"  className='form-control'/>
+                onChange={handleChange} 
+                type="file" 
+                className='form-control'
+                accept='image/*'
+                />
             </div>
             <div className='mb-3'>
                 <label className='form-label'> Description </label>
@@ -83,3 +104,5 @@ const Create = () => {
 }
 
 export default Create;
+
+
